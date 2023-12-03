@@ -33,5 +33,5 @@ jobs:
       - name: Execute E2E Tests
         run: npm run test-e2e-cli
         env:
-            TEST_USER_EMAIL: ${{ secrets.TEST_EMAIL }}
-            TEST_USER_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+            TEST_USER_EMAIL: ${{ secrets.emailForTesting }}
+            TEST_USER_PASSWORD: ${{ secrets.passwordForTesting }}
