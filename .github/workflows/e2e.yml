@@ -31,7 +31,7 @@ jobs:
         run: npm run lint
 
       - name: Execute E2E Tests
-        run: npm run test-e2e-cli
+        run: npm run e2e-test-client
         env:
             TEST_USER_EMAIL: ${{ secrets.emailForTesting }}
             TEST_USER_PASSWORD: ${{ secrets.passwordForTesting }}
