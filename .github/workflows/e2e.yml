@@ -1,0 +1,37 @@
+
+
+# This workflow is triggered on push, pull_request, and workflow_dispatch events
+
+
+name: E2E Test Workflow with Cypress
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  unit-test-job:
+    name: Execute Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout $GITHUB_WORKSPACE
+        uses: actions/checkout@main
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Compile SASS Files
+        run: npm run build
+
+      - name: Node.js Setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Lint Code 
+        run: npm run lint
+
+      - name: Execute E2E Tests
+        run: npm run e2e-test-client
+        env:
+            TEST_USER_EMAIL: ${{ secrets.emailForTesting }}
+            TEST_USER_PASSWORD: ${{ secrets.passwordForTesting }}
